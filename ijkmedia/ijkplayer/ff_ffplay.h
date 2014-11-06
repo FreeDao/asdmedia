@@ -30,6 +30,7 @@
 
 void      ffp_global_init();
 void      ffp_global_uninit();
+void      ffp_global_set_log_report(int use_report);
 void      ffp_io_stat_register(void (*cb)(const char *url, int type, int bytes));
 void      ffp_io_stat_complete_register(void (*cb)(const char *url,
                                                    int64_t read_bytes, int64_t total_size,
@@ -61,6 +62,7 @@ int       ffp_wait_stop_l(FFPlayer *ffp);
 int       ffp_seek_to_l(FFPlayer *ffp, long msec);
 long      ffp_get_current_position_l(FFPlayer *ffp);
 long      ffp_get_duration_l(FFPlayer *ffp);
+long      ffp_get_playable_duration_l(FFPlayer *ffp);
 
 /* for internal usage */
 void      ffp_toggle_buffering_l(FFPlayer *ffp, int start_buffering);

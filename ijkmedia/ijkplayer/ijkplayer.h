@@ -146,6 +146,7 @@ typedef struct SDL_Vout SDL_Vout;
 
 void            ijkmp_global_init();
 void            ijkmp_global_uninit();
+void            ijkmp_global_set_log_report(int use_report);
 void            ijkmp_io_stat_register(void (*cb)(const char *url, int type, int bytes));
 void            ijkmp_io_stat_complete_register(void (*cb)(const char *url,
                                                            int64_t read_bytes, int64_t total_size,
@@ -182,6 +183,7 @@ int             ijkmp_get_state(IjkMediaPlayer *mp);
 bool            ijkmp_is_playing(IjkMediaPlayer *mp);
 long            ijkmp_get_current_position(IjkMediaPlayer *mp);
 long            ijkmp_get_duration(IjkMediaPlayer *mp);
+long            ijkmp_get_playable_duration(IjkMediaPlayer *mp);
 
 void           *ijkmp_set_weak_thiz(IjkMediaPlayer *mp, void *weak_thiz);
 

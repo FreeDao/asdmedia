@@ -71,6 +71,10 @@ void ijkmp_global_uninit()
     ffp_global_uninit();
 }
 
+void ijkmp_global_set_log_report(int use_report)
+{
+    ffp_global_set_log_report(use_report);
+}
 
 void ijkmp_io_stat_register(void (*cb)(const char *url, int type, int bytes))
 {
@@ -522,6 +526,20 @@ long ijkmp_get_duration(IjkMediaPlayer *mp)
     assert(mp);
     pthread_mutex_lock(&mp->mutex);
     long retval = ijkmp_get_duration_l(mp);
+    pthread_mutex_unlock(&mp->mutex);
+    return retval;
+}
+
+static long ijkmp_get_playable_duration_l(IjkMediaPlayer *mp)
+{
+    return ffp_get_playable_duration_l(mp->ffplayer);
+}
+
+long ijkmp_get_playable_duration(IjkMediaPlayer *mp)
+{
+    assert(mp);
+    pthread_mutex_lock(&mp->mutex);
+    long retval = ijkmp_get_playable_duration_l(mp);
     pthread_mutex_unlock(&mp->mutex);
     return retval;
 }
